@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace MVC_Project.DAL.Data.Context
 {
-    internal class MainContext : DbContext
+    public class MainContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server = .; Database = MVC_Project; Trusted_Connection=True; MultipleActiveResultSets = True");
+
+        public MainContext(DbContextOptions<MainContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
