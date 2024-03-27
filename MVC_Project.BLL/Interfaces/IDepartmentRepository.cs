@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Project.BLL.Interfaces
 {
-    internal interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
         int Add(Department department);
         int Update(Department department);

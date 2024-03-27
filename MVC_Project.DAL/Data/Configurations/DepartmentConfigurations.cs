@@ -19,10 +19,7 @@ namespace MVC_Project.DAL.Data.Configurations
                 .UseIdentityColumn(10, 10);
 
             builder.Property(d => d.Name)
-                .IsRequired()
-                .HasColumnType("varchar");
-
-
+                .IsRequired();
         }
     }
 }
