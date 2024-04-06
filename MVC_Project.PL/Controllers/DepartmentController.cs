@@ -39,7 +39,7 @@ namespace MVC_Project.PL.Controllers
         }
 
         [NonAction]
-        public IActionResult CommonView(int? id, string viewName)
+        public IActionResult ViewWithDepartment(int? id, string viewName)
         {
             if (id is null)
             {
@@ -57,12 +57,12 @@ namespace MVC_Project.PL.Controllers
 
         public IActionResult Details(int? id)
         {
-            return CommonView(id, "Details");
+            return ViewWithDepartment(id, "Details");
         }
 
         public IActionResult Edit(int? id)
         {
-            return CommonView(id, "Edit");
+            return ViewWithDepartment(id, "Edit");
         }
 
         [HttpPost]
@@ -77,5 +77,18 @@ namespace MVC_Project.PL.Controllers
             }
             return View(department);
         }
+
+        public IActionResult Delete(int? id)
+        {
+            return ViewWithDepartment(id, "Delete");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(Department department)
+        {
+            departmentRepository.Delete(department);
+			return RedirectToAction(nameof(Index));
+		}
     }
 }
