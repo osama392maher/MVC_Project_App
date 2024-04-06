@@ -25,9 +25,8 @@ namespace MVC_Project.DAL.Models
         PartTime = 2,
     }
 
-    public class Employee
+    public class Employee : ModelBase
     {
-        public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")] // Mapped with database
         [MaxLength(50, ErrorMessage = "Name can't be more than 50 characters")] // Mapped with database
         [MinLength(5, ErrorMessage = "Name can't be less than 3 characters")] // Not Mapped with database
@@ -52,8 +51,6 @@ namespace MVC_Project.DAL.Models
         [Display(Name = "Hire Date")] // Not Mapped with database, just to change the name of the property in front end
         public DateTime HireDate { get; set; }
         [Display(Name = "Creation Date")]
-        public DateTime CreationDate { get; set; } = DateTime.Now;
-        public bool IsDeleted { get; set; }
     }
 
 }
