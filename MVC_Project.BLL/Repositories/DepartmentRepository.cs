@@ -21,18 +21,19 @@ namespace MVC_Project.BLL.Repositories
 
         public int Add(Department department)
         {
-            context.Departments.Add(department);
+            context.Add(department);
             return context.SaveChanges();
         }
 
         public int Update(Department department)
         {
-            throw new NotImplementedException();
+            context.Update(department);
+            return context.SaveChanges();
         }
 
         public int Delete(Department department)
         {
-            context.Departments.Remove(department);
+            context.Remove(department);
             return context.SaveChanges();
         }
 

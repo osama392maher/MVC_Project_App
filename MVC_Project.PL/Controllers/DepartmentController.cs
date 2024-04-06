@@ -37,5 +37,45 @@ namespace MVC_Project.PL.Controllers
             }           
             return View(department);
         }
+
+        [NonAction]
+        public IActionResult CommonView(int? id, string viewName)
+        {
+            if (id is null)
+            {
+                return BadRequest();
+            }
+
+            var department = departmentRepository.GetById(id.Value);
+            if (department is null)
+            {
+                return NotFound();
+            }
+            return View(viewName, department);
+        }
+
+
+        public IActionResult Details(int? id)
+        {
+            return CommonView(id, "Details");
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            return CommonView(id, "Edit");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([FromRoute] int id, Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                var count = departmentRepository.Update(department);
+                if (count > 0)
+                    return RedirectToAction(nameof(Index));
+            }
+            return View(department);
+        }
     }
 }
