@@ -19,8 +19,7 @@ namespace MVC_Project.DAL.Data.Configurations
                 .HasColumnType("varchar");
 
             builder.Property(e => e.Address)
-                .IsRequired()
-                .HasColumnType("varchar");
+                .IsRequired();
 
             builder.Property(e => e.Salary)
                 .HasColumnType("decimal(12,2)");

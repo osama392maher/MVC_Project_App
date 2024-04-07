@@ -33,8 +33,8 @@ namespace MVC_Project.DAL.Models
         public string Name { get; set; }
         [Range(18, 35)] // Not Mapped with database
         public int? Age { get; set; }
-        [RegularExpression("^[0-9]{1,3}-[a-zA-Z]{5, 10}-[a-zA-Z]{4, 10}-[a-zA-Z]{5, 10}$",
-            ErrorMessage = "Address Must be like 123-Street-City-Country")] // Not Mapped with database
+        [RegularExpression(@"^[0-9]{1,3}-[a-zA-Z]{5,10}-[a-zA-Z]{4,10}-[a-zA-Z]{5,10}$",
+            ErrorMessage = "Address must be like 123-Street-City-Country")]
         [Required]
         public string Address { get; set; }
         [DataType(DataType.Currency)] // Not Mapped with database (it's decimal(18,2) in database) [The currency is used to view the value as currency]
@@ -51,6 +51,10 @@ namespace MVC_Project.DAL.Models
         [Display(Name = "Hire Date")] // Not Mapped with database, just to change the name of the property in front end
         public DateTime HireDate { get; set; }
         [Display(Name = "Creation Date")]
+        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; }
+
+
     }
 
 }
