@@ -1,4 +1,4 @@
-﻿ using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.BLL.Repositories;
 using MVC_Project.DAL.Models;
@@ -13,7 +13,7 @@ namespace MVC_Project.PL.Controllers
         {
             this.departmentRepository = departmentRepository;
         }
-        
+
         public IActionResult Index()
         {
             var departments = departmentRepository.GetAll();
@@ -34,7 +34,7 @@ namespace MVC_Project.PL.Controllers
                 if (count > 0)
                     return RedirectToAction(nameof(Index));
                 return View(department);
-            }           
+            }
             return View(department);
         }
 
@@ -88,7 +88,7 @@ namespace MVC_Project.PL.Controllers
         public IActionResult Delete(Department department)
         {
             departmentRepository.Delete(department);
-			return RedirectToAction(nameof(Index));
-		}
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
