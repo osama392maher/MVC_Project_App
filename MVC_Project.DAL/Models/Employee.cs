@@ -54,6 +54,9 @@ namespace MVC_Project.DAL.Models
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; }
 
+        public int DepartmentId { get; set; } // Foreign Key 
+        public Department Department { get; set; } // Navigation Property
+
 
     }
 
