@@ -1,4 +1,5 @@
-﻿using MVC_Project.BLL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC_Project.BLL.Interfaces;
 using MVC_Project.DAL.Data.Context;
 using MVC_Project.DAL.Models;
 using System;
@@ -14,6 +15,12 @@ namespace MVC_Project.BLL.Repositories
         public EmployeeRepository(MainContext dbContext) : base(dbContext)
         {
         }
+
+        public new IEnumerable<Employee> GetAll()
+        {
+            return dbContext.Employees.AsNoTracking().Include(E => E.Department).ToList();
+        }
+
 
         public IQueryable<Employee> GetEmployeesByAddress(string address)
         {
