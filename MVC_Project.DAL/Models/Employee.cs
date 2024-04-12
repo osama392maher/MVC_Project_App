@@ -55,7 +55,7 @@ namespace MVC_Project.DAL.Models
         public bool IsDeleted { get; set; }
 
         public int DepartmentId { get; set; } // Foreign Key 
-        public Department Department { get; set; } // Navigation Property
+        public virtual Department Department { get; set; } // Navigation Property
 
 
     }

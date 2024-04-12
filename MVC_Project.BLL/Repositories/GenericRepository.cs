@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.DAL.Data.Context;
+using MVC_Project.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Project.BLL.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : ModelBase
     {
         private protected readonly MainContext dbContext;
 

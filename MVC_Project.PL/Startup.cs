@@ -31,7 +31,8 @@ namespace MVC_Project.PL
 
             services.AddDbContext<MainContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                        .UseLazyLoadingProxies();
             });
 
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
