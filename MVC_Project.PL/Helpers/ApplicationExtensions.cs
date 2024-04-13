@@ -2,7 +2,7 @@
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.BLL.Repositories;
 
-namespace MVC_Project.PL.Extensions
+namespace MVC_Project.PL.Helpers
 {
     public static class ApplicationExtensions
     {
@@ -10,7 +10,7 @@ namespace MVC_Project.PL.Extensions
         {
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddAutoMapper();
+            services.AddAutoMapper(M => M.AddProfile<MappingProfiles>());
 
             return services;
         }

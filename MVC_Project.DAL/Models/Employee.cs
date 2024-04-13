@@ -51,6 +51,9 @@ namespace MVC_Project.DAL.Models
         [Display(Name = "Hire Date")] // Not Mapped with database, just to change the name of the property in front end
         public DateTime HireDate { get; set; }
         [Display(Name = "Creation Date")]
+        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; }
+
         public int DepartmentId { get; set; } // Foreign Key 
         public virtual Department Department { get; set; } // Navigation Property
 

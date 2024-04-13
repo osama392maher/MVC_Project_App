@@ -16,6 +16,8 @@ namespace MVC_Project.DAL.Models
         public string Name { get; set; }
 
         [Display(Name = "Date of Creation")]
+        //DateOfCreation
+        public DateTime DateOfCreation { get; set; } = DateTime.Now;
         public virtual ICollection<Employee> Employees { get; set; } = new HashSet<Employee>(); // Navigation Property
     }
 }

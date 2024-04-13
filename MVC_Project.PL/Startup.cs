@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.BLL.Repositories;
 using MVC_Project.DAL.Data.Context;
-using MVC_Project.PL.Extensions;
+using MVC_Project.PL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
