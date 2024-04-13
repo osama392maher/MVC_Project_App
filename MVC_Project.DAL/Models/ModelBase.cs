@@ -9,9 +9,5 @@ namespace MVC_Project.DAL.Models
     public class ModelBase
     {
         public int Id { get; set; }
-
-        public DateTime CreationDate { get; set; } = DateTime.Now;
-
-        public bool IsDeleted { get; set; }
     }
 }

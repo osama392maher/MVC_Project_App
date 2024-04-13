@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.DAL.Models;
 using MVC_Project.PL.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MVC_Project.PL.Controllers
@@ -32,7 +33,9 @@ namespace MVC_Project.PL.Controllers
                 employees = employeeRepository.GetAll();
             }
 
-            return View(employees);
+            var employeeVm = mapper.Map<IEnumerable<EmployeeViewModel>>(employees);
+
+            return View(employeeVm);
         }
 
         public IActionResult Create()
