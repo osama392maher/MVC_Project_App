@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Employee>
+﻿@model IEnumerable<EmployeeViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,6 +8,18 @@
 <br />
 
 <a class="btn btn-success" asp-action="Create" mt-5> Add New Employee </a>
+
+<div class="row justify-content-center align-items-center mt-5">
+    <form class="row col-8 offset-2" asp-action="Index">
+        <div class="col-8">
+            <input type="text" class="form-control" name="searchInput" placeholder="Search By Name" />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+    </form>
+</div>
+
 
 @if (Model.Count() > 0)
 {

@@ -1,21 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.DAL.Models;
+using MVC_Project.PL.ViewModels;
+using System.Linq;
 
 namespace MVC_Project.PL.Controllers
 {
     public class EmployeeController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IEmployeeRepository employeeRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        public EmployeeController(IMapper mapper, IEmployeeRepository employeeRepository)
         {
+            this.mapper = mapper;
             this.employeeRepository = employeeRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchInput)
         {
-            var employees = employeeRepository.GetAll();
+
+            var employees = Enumerable.Empty<Employee>();
+
+            if (!string.IsNullOrEmpty(searchInput))
+            {
+                employees = employeeRepository.SearchByName(searchInput);
+            }
+            else
+            {
+                employees = employeeRepository.GetAll();
+            }
+
             return View(employees);
         }
 
@@ -25,8 +41,10 @@ namespace MVC_Project.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeViewModel employeeVm)
         {
+
+            var employee = mapper.Map<Employee>(employeeVm);
             if (ModelState.IsValid)
             {
                 var count = employeeRepository.Add(employee);
@@ -50,7 +68,10 @@ namespace MVC_Project.PL.Controllers
             {
                 return NotFound();
             }
-            return View(viewName, employee);
+
+            var employeeVm = mapper.Map<EmployeeViewModel>(employee);
+
+            return View(viewName, employeeVm);
         }
 
         public IActionResult Details(int? id)
@@ -64,8 +85,11 @@ namespace MVC_Project.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Employee employee)
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([FromRoute] int id, EmployeeViewModel employeeVm)
         {
+
+            var employee = mapper.Map<Employee>(employeeVm);
             if (ModelState.IsValid)
             {
                 var count = employeeRepository.Update(employee);
@@ -82,8 +106,10 @@ namespace MVC_Project.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Employee employee)
+        public IActionResult Delete(EmployeeViewModel employeeVm)
         {
+            var employee = mapper.Map<Employee>(employeeVm);
+
             var count = employeeRepository.Delete(employee);
             if (count > 0)
                 return RedirectToAction(nameof(Index));

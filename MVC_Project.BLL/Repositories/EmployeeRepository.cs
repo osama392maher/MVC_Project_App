@@ -28,5 +28,11 @@ namespace MVC_Project.BLL.Repositories
                 .Where(e => e.Address.ToLower() == address.ToLower());
 
         }
+
+        public IQueryable<Employee> SearchByName(string name)
+        {
+            return dbContext.Employees
+                .Where(e => e.Name.ToLower().Contains(name.ToLower())).AsNoTracking().Include(E => E.Department);
+        }
     }
 }

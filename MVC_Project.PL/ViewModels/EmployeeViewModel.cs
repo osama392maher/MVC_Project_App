@@ -1,32 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MVC_Project.DAL.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace MVC_Project.DAL.Models
+namespace MVC_Project.PL.ViewModels
 {
-    public enum Gender
+    public class EmployeeViewModel
     {
-        [EnumMember(Value = "Male")] // This is used to serialize the enum value as string when saved in database
-        MALE = 1,
-        [EnumMember(Value = "Female")]
-        FEMALE = 2
-    }
-
-    public enum EmpType
-    {
-        [EnumMember(Value = "FullTime")]
-        FullTime = 1,
-        [EnumMember(Value = "PartTime")]
-        PartTime = 2,
-    }
-
-    public class Employee : ModelBase
-    {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")] // Mapped with database
         [MaxLength(50, ErrorMessage = "Name can't be more than 50 characters")] // Mapped with database
         [MinLength(5, ErrorMessage = "Name can't be less than 3 characters")] // Not Mapped with database
@@ -51,6 +32,7 @@ namespace MVC_Project.DAL.Models
         [Display(Name = "Hire Date")] // Not Mapped with database, just to change the name of the property in front end
         public DateTime HireDate { get; set; }
         [Display(Name = "Creation Date")]
+
         public int DepartmentId { get; set; } // Foreign Key 
         public virtual Department Department { get; set; } // Navigation Property
 

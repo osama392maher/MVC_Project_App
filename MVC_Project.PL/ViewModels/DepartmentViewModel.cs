@@ -1,13 +1,11 @@
-﻿using System;
+﻿using MVC_Project.DAL.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace MVC_Project.DAL.Models
+namespace MVC_Project.PL.ViewModels
 {
-    public class Department : ModelBase
+    public class DepartmentViewModel
     {
         [Required(ErrorMessage = "Code Is Required !!")]
         public string Code { get; set; }
@@ -18,4 +16,8 @@ namespace MVC_Project.DAL.Models
         [Display(Name = "Date of Creation")]
         public virtual ICollection<Employee> Employees { get; set; } = new HashSet<Employee>(); // Navigation Property
     }
+
 }
+
+
+
