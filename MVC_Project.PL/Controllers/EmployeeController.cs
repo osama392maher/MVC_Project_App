@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MVC_Project.BLL.Interfaces;
 using MVC_Project.DAL.Models;
+using MVC_Project.PL.Helpers;
 using MVC_Project.PL.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,15 +48,25 @@ namespace MVC_Project.PL.Controllers
         public IActionResult Create(EmployeeViewModel employeeVm)
         {
 
-            var employee = mapper.Map<Employee>(employeeVm);
             if (ModelState.IsValid)
             {
+
+                employeeVm.ImageName = DocumentSettings.UploadFile(employeeVm.Image, "Images");
+
+                var employee = mapper.Map<Employee>(employeeVm);
+
                 var count = employeeRepository.Add(employee);
+
                 if (count > 0)
-                    return RedirectToAction(nameof(Index));
-                return View(employee);
+                    TempData["AddSuccess"] = "Employee Is Created Successfuly";
+                else
+                {
+                    TempData["AddFail"] = "An Error Has Occured, Employee Not Created :(";
+                }
+                
+                return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(employeeVm);
         }
 
         [NonAction]
