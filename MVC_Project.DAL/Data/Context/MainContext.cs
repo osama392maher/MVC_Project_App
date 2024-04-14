@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVC_Project.DAL.Data.Context
 {
-    public class MainContext : IdentityDbContext
+    public class MainContext : IdentityDbContext<ApplicationUser>
     {
 
         public MainContext(DbContextOptions<MainContext> options) : base(options)

@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_AuthLayout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
@@ -21,6 +25,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\files\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\_AuthLayout.cshtml" />
   </ItemGroup>
 
 </Project>
