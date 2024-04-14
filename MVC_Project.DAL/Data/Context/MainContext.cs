@@ -6,10 +6,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVC_Project.DAL.Data.Context
 {
-    public class MainContext : DbContext
+    public class MainContext : IdentityDbContext
     {
 
         public MainContext(DbContextOptions<MainContext> options) : base(options)
@@ -18,11 +20,13 @@ namespace MVC_Project.DAL.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
+       
     }
 }
