@@ -85,6 +85,12 @@ namespace MVC_Project.PL.Controllers
 
             var employeeVm = mapper.Map<EmployeeViewModel>(employee);
 
+            // if view is delete
+            if (viewName == "Delete")
+            {
+                TempData["ImageName"] = employeeVm.ImageName;
+            }
+
             return View(viewName, employeeVm);
         }
 
@@ -122,11 +128,17 @@ namespace MVC_Project.PL.Controllers
         [HttpPost]
         public IActionResult Delete(EmployeeViewModel employeeVm)
         {
+
+            employeeVm.ImageName = TempData["ImageName"] as string;
+
             var employee = mapper.Map<Employee>(employeeVm);
 
             var count = employeeRepository.Delete(employee);
             if (count > 0)
+            {
+                DocumentSettings.DeleteFile(employeeVm.ImageName, "Images");
                 return RedirectToAction(nameof(Index));
+            }
             return View(employee);
         }
 
